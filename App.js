@@ -1,21 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import {View, Text} from 'react-native'
+import {NavigationContainer} from '@react-navigation/native'
+import {createStackNavigator} from '@react-navigation/stack'
 
-export default function App() {
+const Stack = createStackNavigator()
+
+function TelaInicial(){
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Seja Bem vindo ao meu app</Text>
+    </View>
+  )
+}
+function TelaSobre() {
+  return(
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>MeuApp Versão 1.0</Text>
+      <Text>Última atualização 18/11/2020</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function MeuApp() {
+  return(
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Sobre'>
+
+      <Stack.Screen name='Inicio' component={TelaInicial} />
+      <Stack.Screen name='Sobre' component={TelaSobre} />
+
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
